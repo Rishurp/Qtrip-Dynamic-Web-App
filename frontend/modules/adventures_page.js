@@ -5,14 +5,26 @@ import config from "../conf/index.js";
 function getCityFromURL(search) {
   // TODO: MODULE_ADVENTURES
   // 1. Extract the city id from the URL's Query Param and return it
-
+    let param = new URLSearchParams(search);
+    
+    let city = param.get('city') 
+    return city ;
+  
 }
 
 //Implementation of fetch call with a paramterized input based on city
 async function fetchAdventures(city) {
   // TODO: MODULE_ADVENTURES
   // 1. Fetch adventures using the Backend API and return the data
-
+try{
+  let res = await fetch(config.backendEndpoint+`/adventures?city=${city}`);
+  let data = await res.json();
+  return data;
+}
+catch(err)
+{
+  return null;
+}
 }
 
 //Implementation of DOM manipulation to add adventures for the given city from list of adventures
@@ -20,6 +32,29 @@ function addAdventureToDOM(adventures) {
   // TODO: MODULE_ADVENTURES
   // 1. Populate the Adventure Cards and insert those details into the DOM
 
+   adventures.forEach((value) =>{
+
+    let anchor = document.createElement("a");
+    anchor.setAttribute("href",`detail/?adventure=${value.id}`);
+    document.querySelector("#data").setAttribute("class","row row-cols-2 row-cols-lg-4");
+    anchor.setAttribute("id",`${value.id}`);
+    let card = document.createElement("div");
+    card.setAttribute("class","activity-card card mt-3");
+     card.innerHTML = `
+      <img clas="card-image-top"  src=${value.image}></img>
+      <p class="category-banner">${value.category}</p>
+      <div class="d-flex justify-content-between p-2 w-100 align-items-center">
+      <h5 class="card-title">${value.name}</h5>
+      <h6 class="card-text">₹${value.costPerHead}</h6>
+      </div>
+      <div class="d-flex justify-content-between p-2 w-100 align-items-center">
+      <h5 class="card-title">Duration </h5>
+      <h6 class="card-text">${value.duration} Hours</h6>
+      </div>
+      `
+    anchor.append(card);
+    document.querySelector("#data").append(anchor);
+  });
 }
 
 //Implementation of filtering by duration which takes in a list of adventures, the lower bound and upper bound of duration and returns a filtered list of adventures.
@@ -33,7 +68,6 @@ function filterByDuration(list, low, high) {
 function filterByCategory(list, categoryList) {
   // TODO: MODULE_FILTERS
   // 1. Filter adventures based on their Category and return filtered list
-
 }
 
 // filters object looks like this filters = { duration: "", category: [] };
