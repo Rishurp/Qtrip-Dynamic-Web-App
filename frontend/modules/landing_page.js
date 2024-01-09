@@ -1,10 +1,17 @@
 import config from "../conf/index.js";
 
+<<<<<<< HEAD
 
 async function init() {
   //Fetches list of all cities along with their images and description
   let cities = await fetchCities();
   
+=======
+async function init() {
+  //Fetches list of all cities along with their images and description
+  let cities = await fetchCities();
+
+>>>>>>> 266a53f077b904f62c9d2a1aa9bf9c77c5a724a4
   //Updates the DOM with the cities
   if (cities) {
     cities.forEach((key) => {
@@ -17,6 +24,7 @@ async function init() {
 async function fetchCities() {
   // TODO: MODULE_CITIES
   // 1. Fetch cities using the Backend API and return the data
+<<<<<<< HEAD
   try{
     let res = await fetch(config.backendEndpoint +"/cities")
     let data = await res.json();
@@ -25,6 +33,9 @@ async function fetchCities() {
   catch(err){
       return null;
   }
+=======
+
+>>>>>>> 266a53f077b904f62c9d2a1aa9bf9c77c5a724a4
 }
 
 //Implementation of DOM manipulation to add cities
@@ -32,6 +43,7 @@ function addCityToDOM(id, city, description, image) {
   // TODO: MODULE_CITIES
   // 1. Populate the City details and insert those details into the DOM
 
+<<<<<<< HEAD
   let card = document.createElement("a");
   let data = document.querySelector( "#data" );
   card.setAttribute("href",`pages/adventures/?city=${id}`)
@@ -46,6 +58,8 @@ function addCityToDOM(id, city, description, image) {
   `
   data.append(card);
 
+=======
+>>>>>>> 266a53f077b904f62c9d2a1aa9bf9c77c5a724a4
 }
 
 export { init, fetchCities, addCityToDOM };
