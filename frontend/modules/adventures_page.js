@@ -5,22 +5,17 @@ import config from "../conf/index.js";
 function getCityFromURL(search) {
   // TODO: MODULE_ADVENTURES
   // 1. Extract the city id from the URL's Query Param and return it
-<<<<<<< HEAD
     let param = new URLSearchParams(search);
     
     let city = param.get('city') 
     return city ;
   
-=======
-
->>>>>>> 266a53f077b904f62c9d2a1aa9bf9c77c5a724a4
 }
 
 //Implementation of fetch call with a paramterized input based on city
 async function fetchAdventures(city) {
   // TODO: MODULE_ADVENTURES
   // 1. Fetch adventures using the Backend API and return the data
-<<<<<<< HEAD
 try{
   let res = await fetch(config.backendEndpoint+`/adventures?city=${city}`);
   let data = await res.json();
@@ -30,9 +25,6 @@ catch(err)
 {
   return null;
 }
-=======
-
->>>>>>> 266a53f077b904f62c9d2a1aa9bf9c77c5a724a4
 }
 
 //Implementation of DOM manipulation to add adventures for the given city from list of adventures
@@ -40,7 +32,6 @@ function addAdventureToDOM(adventures) {
   // TODO: MODULE_ADVENTURES
   // 1. Populate the Adventure Cards and insert those details into the DOM
 
-<<<<<<< HEAD
    adventures.forEach((value) =>{
 
     let anchor = document.createElement("a");
@@ -64,8 +55,6 @@ function addAdventureToDOM(adventures) {
     anchor.append(card);
     document.querySelector("#data").append(anchor);
   });
-=======
->>>>>>> 266a53f077b904f62c9d2a1aa9bf9c77c5a724a4
 }
 
 //Implementation of filtering by duration which takes in a list of adventures, the lower bound and upper bound of duration and returns a filtered list of adventures.
@@ -79,10 +68,6 @@ function filterByDuration(list, low, high) {
 function filterByCategory(list, categoryList) {
   // TODO: MODULE_FILTERS
   // 1. Filter adventures based on their Category and return filtered list
-<<<<<<< HEAD
-=======
-
->>>>>>> 266a53f077b904f62c9d2a1aa9bf9c77c5a724a4
 }
 
 // filters object looks like this filters = { duration: "", category: [] };

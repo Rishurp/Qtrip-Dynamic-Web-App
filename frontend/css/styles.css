@@ -44,11 +44,6 @@ footer {
 }
 .tile {
   position: relative;
-<<<<<<< HEAD
-
-=======
-  height: 100%;
->>>>>>> 266a53f077b904f62c9d2a1aa9bf9c77c5a724a4
   /* width: calc(25% - 20px); */
   /* padding: 6px; */
   border-radius: 8px;
@@ -56,28 +51,18 @@ footer {
   -webkit-transition: 0.2s all;
   overflow: hidden;
 
-<<<<<<< HEAD
   
   align-items: center;
   text-align: center;
 
 
-=======
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
->>>>>>> 266a53f077b904f62c9d2a1aa9bf9c77c5a724a4
 }
 .tile img {
   width: 100%;
   height: 100%;
   border-radius: 8px;
   -webkit-transition: 0.2s all;
-<<<<<<< HEAD
   transition: 0.5s ease;
-=======
->>>>>>> 266a53f077b904f62c9d2a1aa9bf9c77c5a724a4
   /* -webkit-filter: brightness(70%); */
 }
 .tile img:hover {
@@ -86,7 +71,6 @@ footer {
 }
 
 .tile-text {
-<<<<<<< HEAD
   position: relative;
   z-index: 1;
   text-transform: uppercase;
@@ -96,12 +80,6 @@ footer {
   font-weight:bold;
   bottom:20%;
   color:white;
-=======
-  position: absolute;
-  z-index: 1;
-  text-transform: uppercase;
-  letter-spacing: 2px;
->>>>>>> 266a53f077b904f62c9d2a1aa9bf9c77c5a724a4
 }
 .hero-image {
   /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
