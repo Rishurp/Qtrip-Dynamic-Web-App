@@ -110,8 +110,6 @@ describe("Adventure Page Tests", function () {
     );
   });
 
-<<<<<<< HEAD
-=======
   it("filterByDuration() - Returns an array of adventures, filtered by duration", function () {
     const expected = [
       {
@@ -360,5 +358,4 @@ describe("Adventure Page Tests", function () {
 
     expect(document.getElementById("category-list").children.length).toEqual(filters.category.length);    
   });
->>>>>>> 266a53f077b904f62c9d2a1aa9bf9c77c5a724a4
 });

@@ -45,7 +45,6 @@ function addCityToDOM(id, city, description, image) {
   <p>${description}</p>
   `
   data.append(card);
-
 }
 
 export { init, fetchCities, addCityToDOM };

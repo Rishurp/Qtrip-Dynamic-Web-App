@@ -140,13 +140,21 @@
             generateFilterPillsAndUpdateDOM(filters);
         })();
 
-
         //executed when onChange() is triggered on duration filter dropdown
         function selectDuration(event) {
             // TODO: MODULE_FILTERS
             // 1. Change the DOM to show the selected duration filter. Use the provided input event
             // 2. Invoke saveFiltersToLocalStorage here
 
+             filters.duration = event.target.value;
+
+            document.getElementById("data").innerText="";
+           
+            generateFilterPillsAndUpdateDOM(filters);
+            let filteredAdventures = filterFunction(adventures, filters);
+            addAdventureToDOM(filteredAdventures);
+
+            saveFiltersToLocalStorage(filters);
         }
 
         //executed when clear button is clicked on duration filter dropdown
@@ -154,10 +162,15 @@
             // TODO: MODULE_FILTERS
             // 1. Change the DOM to clear the Duration filter. Refer clearCategory() below
             // 2. Invoke saveFiltersToLocalStorage here
+            filters.duration ="";
+            saveFiltersToLocalStorage(filters);
+            let filteredAdventures = filterFunction(adventures, filters);
+            addAdventureToDOM(filteredAdventures);
+            const selectEle = document.getElementById("duration-select");
+                selectEle.selectedIndex = 0;
+
 
         }
-
-
 
         //executed when onChange() is triggered on category filter dropdown
         function selectCategory(event) {
@@ -166,7 +179,6 @@
 
             let category = event.target.value;
             document.getElementById("category-select").selectedIndex = 0;
-
             filters["category"].push(category);
             filters["category"] = filters["category"].filter(onlyUnique);
 
@@ -177,6 +189,7 @@
 
             // TODO: MODULE_FILTERS
             // 1. Invoke saveFiltersToLocalStorage here
+            saveFiltersToLocalStorage(filters);
         }
 
         //executed when clear button is clicked on category filter dropdown
@@ -190,6 +203,7 @@
 
             // TODO: MODULE_FILTERS
             // 1. Invoke saveFiltersToLocalStorage here
+            saveFiltersToLocalStorage(filters);
         }
 
         //helper function
