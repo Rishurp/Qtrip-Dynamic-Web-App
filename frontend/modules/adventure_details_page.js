@@ -89,18 +89,27 @@ function addBootstrapPhotoGallery(images) {
 
     slideBtn.innerHTML +=btn;;
     imageDiv.innerHTML +=imgSubDivs;
-
-
   });
-
-
-  
 }
 
 //Implementation of conditional rendering of DOM based on availability
 function conditionalRenderingOfReservationPanel(adventure) {
   // TODO: MODULE_RESERVATIONS
   // 1. If the adventure is already reserved, display the sold-out message.
+  let soldOut = document.getElementById("reservation-panel-sold-out");
+  let reservePanel = document.getElementById("reservation-panel-available");
+  let cost = document.getElementById("reservation-person-cost");
+  if(adventure.available === true)
+  {
+    soldOut.style.display="none"; 
+    reservePanel.style.display="block";
+    cost.textContent = adventure.costPerHead;
+  }
+  else
+  {
+    reservePanel.style.display="none";
+    soldOut.style.display="block"; 
+  }
 
 }
 
@@ -108,6 +117,11 @@ function conditionalRenderingOfReservationPanel(adventure) {
 function calculateReservationCostAndUpdateDOM(adventure, persons) {
   // TODO: MODULE_RESERVATIONS
   // 1. Calculate the cost based on number of persons and update the reservation-cost field
+  let totalPerson = persons;
+  let costPerHead = adventure.costPerHead;
+  let totalCost = totalPerson * costPerHead;
+  let resCost = document.getElementById("reservation-cost");
+  resCost.textContent = totalCost;
 
 }
 
@@ -116,12 +130,54 @@ function captureFormSubmit(adventure) {
   // TODO: MODULE_RESERVATIONS
   // 1. Capture the query details and make a POST API call using fetch() to make the reservation
   // 2. If the reservation is successful, show an alert with "Success!" and refresh the page. If the reservation fails, just show an alert with "Failed!".
+  const myForm=document.getElementById("myForm");
+  myForm.addEventListener("submit",function (event){
+    event.preventDefault();
+
+    let name = document.getElementById("name");
+    let date = document.getElementById("date");
+    let person = document.getElementById("person");
+
+    let  dataObj={
+      name:name.value,
+      date:date.value,
+      person:person.value,
+      adventure:adventure.id
+    }
+
+    let options = {
+      method:"POST",
+      headers: {'Content-Type': 'application/json'},
+       body:JSON.stringify(dataObj)
+
+    }
+
+    try{
+      fetch(config.backendEndpoint + "/reservations/new",options).then((response) => console.log(response))
+      alert("success");
+    }
+    catch(error){
+      alert("failed");
+    }
+  });
 }
+
 
 //Implementation of success banner after reservation
 function showBannerIfAlreadyReserved(adventure) {
   // TODO: MODULE_RESERVATIONS
   // 1. If user has already reserved this adventure, show the reserved-banner, else don't
+  try{
+    if(adventure["reserved"]==true)
+    document.getElementById("reserved-banner").style.display="block";
+    else
+    document.getElementById("reserved-banner").style.display="none";
+  }
+  catch(err)
+  {
+    return null ;
+  }
+ 
 
 }
 
